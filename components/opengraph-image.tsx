@@ -1,6 +1,4 @@
-import { readFile } from "fs/promises";
 import { ImageResponse } from "next/og";
-import { join } from "path";
 import logoImage from "../app/logo-white.png";
 
 export type Props = {
@@ -15,8 +13,8 @@ export default async function OpengraphImage(props?: Props): Promise<ImageRespon
     ...props,
   };
 
-  const file = await readFile(join(process.cwd(), "./fonts/Inter-Bold.ttf"));
-  const font = Uint8Array.from(file).buffer;
+  // const file = await readFile(join(process.cwd(), "./fonts/Inter-Bold.ttf"));
+  // const font = Uint8Array.from(file).buffer;
 
   return new ImageResponse(
     (
@@ -31,12 +29,12 @@ export default async function OpengraphImage(props?: Props): Promise<ImageRespon
       width: 1200,
       height: 630,
       fonts: [
-        {
-          name: "Inter",
-          data: font,
-          style: "normal",
-          weight: 700,
-        },
+        // {
+        //   name: "Inter",
+        //   data: font,
+        //   style: "normal",
+        //   weight: 700,
+        // },
       ],
     },
   );
