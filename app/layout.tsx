@@ -30,7 +30,7 @@ export const metadata = {
       "BLKLST Records — BLKLST Records is an independent underground record label from Helsinki, Finland. Dark techno and experimental electronic music. Artists, releases and events.",
     url: baseUrl,
     siteName: SITE_NAME ?? "BLKLST Records",
-    images: [{ url: `${baseUrl}/opengraph-image`, alt: SITE_NAME ?? "BLKLST Records" }],
+    images: [{ url: `${baseUrl}/share.png`, alt: SITE_NAME ?? "BLKLST Records" }],
     type: "website",
   },
   twitter: {
