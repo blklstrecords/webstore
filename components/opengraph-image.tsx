@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ImageResponse } from "next/og";
-import logoImage from "../app/logo-white.png";
+import logoImage from "./logo-white.png";
 
 export type Props = {
   title?: string;

@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getCart, createCart, addToCart } from "lib/shopify";
+import { addToCart, createCart, getCart } from "lib/shopify";
 import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -26,5 +26,5 @@ export async function POST(req: NextRequest) {
 
   cart = await getCart();
 
-  return NextResponse.json({ checkoutUrl: cart?.checkoutUrl || null });
+  return NextResponse.json({ checkoutUrl: cart?.checkoutUrl || null }, { status: 200 });
 }

@@ -1,8 +1,6 @@
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from "lib/constants";
 import { isShopifyError } from "lib/type-guards";
 import { ensureStartsWith } from "lib/utils";
-import { cacheLife, cacheTag, revalidateTag } from "next/cache";
-import { cookies, headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { addToCartMutation, createCartMutation, editCartItemsMutation, removeFromCartMutation } from "./mutations/cart";
 import { getCartQuery } from "./queries/cart";
@@ -193,6 +191,7 @@ export async function createCart(): Promise<Cart> {
 }
 
 export async function addToCart(lines: { merchandiseId: string; quantity: number }[]): Promise<Cart> {
+  const { cookies } = await import("next/headers");
   const cartId = (await cookies()).get("cartId")?.value!;
   const res = await shopifyFetch<ShopifyAddToCartOperation>({
     query: addToCartMutation,
@@ -205,6 +204,7 @@ export async function addToCart(lines: { merchandiseId: string; quantity: number
 }
 
 export async function removeFromCart(lineIds: string[]): Promise<Cart> {
+  const { cookies } = await import("next/headers");
   const cartId = (await cookies()).get("cartId")?.value!;
   const res = await shopifyFetch<ShopifyRemoveFromCartOperation>({
     query: removeFromCartMutation,
@@ -218,6 +218,7 @@ export async function removeFromCart(lineIds: string[]): Promise<Cart> {
 }
 
 export async function updateCart(lines: { id: string; merchandiseId: string; quantity: number }[]): Promise<Cart> {
+  const { cookies } = await import("next/headers");
   const cartId = (await cookies()).get("cartId")?.value!;
   const res = await shopifyFetch<ShopifyUpdateCartOperation>({
     query: editCartItemsMutation,
@@ -232,9 +233,11 @@ export async function updateCart(lines: { id: string; merchandiseId: string; qua
 
 export async function getCart(): Promise<Cart | undefined> {
   "use cache: private";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.cart);
   cacheLife("seconds");
 
+  const { cookies } = await import("next/headers");
   const cartId = (await cookies()).get("cartId")?.value;
 
   if (!cartId) {
@@ -256,6 +259,7 @@ export async function getCart(): Promise<Cart | undefined> {
 
 export async function getCollection(handle: string): Promise<Collection | undefined> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.collections);
   cacheLife("days");
 
@@ -279,6 +283,7 @@ export async function getCollectionProducts({
   sortKey?: string;
 }): Promise<Product[]> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.collections, TAGS.products);
   cacheLife("days");
 
@@ -306,6 +311,7 @@ export async function getCollectionProducts({
 
 export async function getCollections(): Promise<Collection[]> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.collections);
   cacheLife("days");
 
@@ -352,6 +358,7 @@ export async function getCollections(): Promise<Collection[]> {
 
 export async function getMenu(handle: string): Promise<Menu[]> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.collections);
   cacheLife("days");
 
@@ -394,6 +401,7 @@ export async function getPages(): Promise<Page[]> {
 
 export async function getProduct(handle: string): Promise<Product | undefined> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.products);
   cacheLife("days");
 
@@ -414,6 +422,7 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
 
 export async function getProductRecommendations(productId: string): Promise<Product[]> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.products);
   cacheLife("days");
 
@@ -437,6 +446,7 @@ export async function getProducts({
   sortKey?: string;
 }): Promise<Product[]> {
   "use cache";
+  const { cacheTag, cacheLife } = await import("next/cache");
   cacheTag(TAGS.products);
   cacheLife("days");
 
@@ -458,6 +468,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   // otherwise it will continue to retry the request.
   const collectionWebhooks = ["collections/create", "collections/delete", "collections/update"];
   const productWebhooks = ["products/create", "products/delete", "products/update"];
+  const { headers } = await import("next/headers");
   const topic = (await headers()).get("x-shopify-topic") || "unknown";
   const secret = req.nextUrl.searchParams.get("secret");
   const isCollectionUpdate = collectionWebhooks.includes(topic);
@@ -474,11 +485,11 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   if (isCollectionUpdate) {
-    revalidateTag(TAGS.collections, "seconds");
+    // revalidateTag(TAGS.collections, "seconds");
   }
 
   if (isProductUpdate) {
-    revalidateTag(TAGS.products, "seconds");
+    // revalidateTag(TAGS.products, "seconds");
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });

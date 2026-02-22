@@ -1,12 +1,12 @@
 import { FeaturedProduct } from "components/product/featured-product";
 import { getCollectionProducts } from "lib/shopify";
 
-import { defaultSort, sorting } from "lib/constants";
+import { defaultSort } from "lib/constants";
 
 const PRODUCT_COLLECTION = "featured";
 
 export const metadata = {
-  description: "High-performance ecommerce store built with Next.js, Vercel, and Shopify.",
+  description: "BLKLST Records — curated music, vinyl and limited merch. Shop releases and exclusive drops.",
   openGraph: {
     type: "website",
   },
