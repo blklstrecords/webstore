@@ -1,6 +1,6 @@
 export default {
+  cacheComponents: true,
   experimental: {
-    ppr: true,
     inlineCss: true,
     useCache: true,
   },

@@ -30,3 +30,27 @@ input,
 button {
   @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
+
+:root {
+  --page-bg: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Allow pages to set --page-bg to `url(...)` and have it render as a full-page background */
+body {
+  background-image: var(--page-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Optional: a small utility to set the DM Mono font as monospace when needed */
+.font-dm-mono {
+  font-family:
+    var(--font-dm-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+}
