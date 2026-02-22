@@ -1,9 +1,9 @@
+import { baseUrl } from "lib/utils";
 import { DM_Mono } from "next/font/google";
+import Image from "next/image";
 import { ReactNode } from "react";
 import "./globals.css";
-import { baseUrl } from "lib/utils";
-import Image from "next/image";
-import logoFile from "./logo-white.png";
+import logoImage from "./logo-white.png";
 
 const { SITE_NAME } = process.env;
 
@@ -28,7 +28,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <header className="fixed left-0 top-0 z-20 w-full">
           <div className="mx-auto flex max-w-7xl items-center gap-3 px-6 py-4">
             <a href="/" aria-label={SITE_NAME} className="flex items-center gap-3">
-              <Image src={logoFile} alt={`${SITE_NAME} logo`} width={200} height={200} className="" />
+              <Image src={logoImage} alt={`BLKLST Rercords`} width={200} height={200} className="" />
             </a>
           </div>
         </header>
