@@ -23,6 +23,8 @@ export default function FeaturedProductClient({
   supportPrice?: { amount: string; currencyCode: string };
   descriptionHtml?: string | null;
 }) {
+  const [redirecting, setRedirecting] = useState(false);
+
   useEffect(() => {
     if (backgroundImage) {
       document.documentElement.style.setProperty("--page-bg", `url(${backgroundImage})`);
@@ -34,6 +36,8 @@ export default function FeaturedProductClient({
   }, [backgroundImage]);
 
   const handleClick = async (variantId: string) => {
+    if (redirecting) return;
+    setRedirecting(true);
     try {
       const res = await fetch("/api/cart", {
         method: "POST",
@@ -47,11 +51,15 @@ export default function FeaturedProductClient({
       }
 
       const json = await res.json();
+
+      setRedirecting(false);
+
       if (json?.checkoutUrl) {
         window.location.href = json.checkoutUrl;
       }
     } catch (e) {
       console.error(e);
+      setRedirecting(false);
     }
   };
 

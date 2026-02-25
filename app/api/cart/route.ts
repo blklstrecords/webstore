@@ -1,4 +1,4 @@
-import { addToCart, createCart, getCart } from "lib/shopify";
+import { addToCart, createCart } from "lib/shopify";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,21 +10,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "merchandiseId required" }, { status: 400 });
   }
 
-  let cart = await getCart();
+  // let cart = await getCart();
 
-  if (!cart) {
-    cart = await createCart();
-    // persist the cart id as a cookie so subsequent calls use the same cart
-    try {
-      (await cookies()).set("cartId", cart.id!);
-    } catch (e) {
-      // noop
-    }
+  // if (!cart) {
+  let cart = await createCart();
+  // persist the cart id as a cookie so subsequent calls use the same cart
+  try {
+    (await cookies()).set("cartId", cart.id!);
+  } catch (e) {
+    // noop
   }
+  // }
 
   await addToCart([{ merchandiseId, quantity: 1 }]);
 
-  cart = await getCart();
+  // cart = await getCart();
 
   return NextResponse.json({ checkoutUrl: cart?.checkoutUrl || null }, { status: 200 });
 }
