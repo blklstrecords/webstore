@@ -64,7 +64,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${dmMono.className} scroll-smooth bg-no-repeat bg-fixed`}
+      className={`${dmMono.className} scroll-smooth bg-no-repeat bg-fixed bg-cover bg-center`}
       style={{ backgroundPosition: "top center" }}
     >
       <body>

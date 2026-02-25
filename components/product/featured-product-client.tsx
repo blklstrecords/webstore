@@ -98,7 +98,7 @@ export default function FeaturedProductClient({
                   handleClick(v.id);
                 }}
                 href="#"
-                className={`text-xl font-bold uppercase tracking-widest ${v.availableForSale ? "text-black hover:underline dark:text-white" : "text-neutral-400 cursor-not-allowed"}`}
+                className={`text-xl font-bold uppercase tracking-widest ${v.availableForSale ? "hover:underline text-white" : "text-neutral-400 cursor-not-allowed"}`}
                 aria-disabled={!v.availableForSale}
               >
                 {v.title}

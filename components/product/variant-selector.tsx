@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import { ProductOption, ProductVariant } from "lib/shopify/types";
 import { Suspense } from "react";
 
@@ -43,9 +42,7 @@ export async function VariantSelector({
 
   return options.map((option) => (
     <form key={option.id}>
-      <Suspense
-        fallback={<div className="mb-8 h-12 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700" />}
-      ></Suspense>
+      <Suspense fallback={<div className="mb-8 h-12 animate-pulse rounded" />}></Suspense>
     </form>
   ));
 }
