@@ -58,7 +58,7 @@ export default function FeaturedProductClient({
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="pointer-events-auto w-full">
+    <div className="pointer-events-auto w-full text-white">
       <div className="mx-auto w-full max-w-4xl">
         <div className="mx-auto max-w-xl text-center overflow-auto">
           <div className="text-md">
