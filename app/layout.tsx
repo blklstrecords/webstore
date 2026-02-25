@@ -1,10 +1,10 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import { baseUrl } from "lib/utils";
 import { Metadata } from "next";
 import { DM_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
-
 const { SITE_NAME, SITE_DESCRIPTION } = process.env;
 
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400"] });
@@ -77,6 +77,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         />
         <main className="pt-20">{children}</main>
         <GoogleAnalytics gaId="G-L5924924ZC" />
+        <Analytics />
       </body>
     </html>
   );
