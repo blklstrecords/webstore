@@ -1,4 +1,6 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { baseUrl } from "lib/utils";
+import { Metadata } from "next";
 import { DM_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
@@ -7,7 +9,7 @@ const { SITE_NAME, SITE_DESCRIPTION } = process.env;
 
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: SITE_NAME ?? "BLKLST Records",
@@ -74,6 +76,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
         />
         <main className="pt-20">{children}</main>
+        <GoogleAnalytics gaId="G-KSE2X48PG9" />
       </body>
     </html>
   );
