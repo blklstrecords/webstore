@@ -6,7 +6,8 @@ import { defaultSort } from "lib/constants";
 const PRODUCT_COLLECTION = "featured";
 
 export const metadata = {
-  description: "BLKLST Records — curated music, vinyl and limited merch. Shop releases and exclusive drops.",
+  description:
+    "BLKLST Records is an independent underground record label from Helsinki, Finland. Dark techno and experimental electronic music. Artists, releases and events.",
   openGraph: {
     type: "website",
   },

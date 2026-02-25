@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import logoImage from "../logo-white.png";
 
 type Variant = {
   id: string;
@@ -11,10 +13,8 @@ type Variant = {
 export default function FeaturedProductClient({
   variants,
   backgroundImage,
-  logo,
   title,
   supportPrice,
-  descriptionHtml,
 }: {
   variants: Variant[];
   backgroundImage?: string | null;
@@ -58,19 +58,38 @@ export default function FeaturedProductClient({
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div className="pointer-events-auto w-full px-6">
-      <div className="mx-auto w-full max-w-4xl mt-[30vh]">
-        <div className="mx-auto max-w-xl text-center max-h-[70vh] overflow-auto">
-          <h2 className="sticky top-0 bg-transparent text-3xl mb-3 font-bold">{title}</h2>
-
-          <div className="mb-3 text-sm font-semibold text-neutral-600 dark:text-neutral-300">SUPPORT PRICE</div>
-          <div className="mb-4 text-2xl font-semibold">
-            {supportPrice ? `${supportPrice.amount} ${supportPrice.currencyCode}` : ""}
+    <div className="pointer-events-auto w-full">
+      <div className="mx-auto w-full max-w-4xl">
+        <div className="mx-auto max-w-xl text-center overflow-auto">
+          <div className="text-md">
+            Ole osa perustajatukareita!
+            <br />
+            Ostamalla tämän, lähetämme sinulle
+            <br />
+            kuvassa näkyvän OG first-printin,
+            <br />
+            tuet ja saat itsellesi kutsun
+            <br />
+            ensimmäiseen ja viralliseen
+            <br />
+            BLKLST label-night tapahtumaan.
+            <br />
+            <br />
+            Myynnissä vain rajoitettu määrä,
+            <br />
+            koska kaikki ei mahdu tälle listalle.
           </div>
+          <div>
+            <Image src={logoImage} alt={title ?? "Featured product"} className="mx-auto h-56 object-contain" />
+          </div>
+          {/*<div className="mb-2 text-xs font-semibold text-neutral-300">SUPPORT PRICE</div>
+          <div className="mb-8 text-xl font-semibold">
+            {supportPrice ? `${Number(supportPrice.amount).toFixed(2).replace(".", ",")} €` : ""}
+          </div>*/}
 
-          <div className="mb-4 text-sm uppercase tracking-wide text-neutral-500">Select a size</div>
+          <div className="mb-1 text-xs uppercase tracking-wide font-semibold text-neutral-300">Select a size</div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mb-8 flex flex-wrap justify-center gap-4">
             {variants.map((v) => (
               <a
                 key={v.id}
@@ -86,22 +105,23 @@ export default function FeaturedProductClient({
               </a>
             ))}
           </div>
-
-          {descriptionHtml ? (
-            <div className="mt-4 text-sm text-neutral-700 dark:text-neutral-300">
-              <div
-                className={`${showMore ? "" : "max-h-24 overflow-hidden"}`}
-                dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-              />
-              <button
-                type="button"
-                onClick={() => setShowMore((s) => !s)}
-                className="mt-2 text-sm font-medium text-white hover:underline"
-              >
-                {showMore ? "Show less" : "Show more"}
-              </button>
-            </div>
-          ) : null}
+          <div className="text-xs mb-6">
+            <a href="/gildan-5000.pdf" target="_blank" className="hover:underline">
+              Speksit paidasta tästä.
+            </a>
+          </div>
+          <div className="text-xs mb-8">
+            <a href="https://linktr.ee/blklst" target="_blank" className="hover:underline">
+              Tsekkaa meidän some-feedit,
+              <br />
+              musat, julkaisut ja läpät täältä
+            </a>
+          </div>
+          <div className="text-sm mb-8">
+            Terveisin,
+            <br />
+            Mölyset &amp; Pölyset
+          </div>
         </div>
       </div>
     </div>

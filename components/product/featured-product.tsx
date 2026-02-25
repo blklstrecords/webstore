@@ -1,7 +1,5 @@
-import Price from "components/price";
-import Prose from "components/prose";
-import FeaturedProductClient from "./featured-product-client";
 import { Product } from "lib/shopify/types";
+import FeaturedProductClient from "./featured-product-client";
 
 export function FeaturedProduct({ product }: { product: Product }) {
   const variants = product.variants || [];

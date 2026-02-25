@@ -1,9 +1,7 @@
 import { baseUrl } from "lib/utils";
 import { DM_Mono } from "next/font/google";
-import Image from "next/image";
 import { ReactNode } from "react";
 import "./globals.css";
-import logoImage from "./logo-white.png";
 
 const { SITE_NAME, SITE_DESCRIPTION } = process.env;
 
@@ -64,20 +62,17 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   };
 
   return (
-    <html lang="en" className={`${dmMono.className} scroll-smooth`}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+    <html
+      lang="en"
+      className={`${dmMono.className} scroll-smooth bg-no-repeat bg-fixed`}
+      style={{ backgroundPosition: "top center" }}
+    >
+      <body>
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
         />
-        <header className="fixed left-0 top-0 z-20 w-full">
-          <div className="mx-auto flex max-w-7xl items-center gap-3 px-6 py-4">
-            <a href="/" aria-label={SITE_NAME} className="flex items-center gap-3">
-              <Image src={logoImage} alt={`BLKLST Records`} width={200} height={200} className="" />
-            </a>
-          </div>
-        </header>
         <main className="pt-20">{children}</main>
       </body>
     </html>
