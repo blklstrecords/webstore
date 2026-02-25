@@ -76,7 +76,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
         />
         <main className="pt-20">{children}</main>
-        <GoogleAnalytics gaId="G-KSE2X48PG9" />
+        <GoogleAnalytics gaId="G-L5924924ZC" />
       </body>
     </html>
   );
