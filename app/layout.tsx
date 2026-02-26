@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { baseUrl } from "lib/utils";
 import { Metadata } from "next";
 import { DM_Mono } from "next/font/google";
@@ -74,6 +75,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <main className="pt-20">{children}</main>
         <GoogleAnalytics gaId="G-L5924924ZC" />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
