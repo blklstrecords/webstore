@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import logoImage from "../logo-white.png";
 
 type Variant = {
   id: string;
@@ -88,7 +87,13 @@ export default function FeaturedProductClient({
             koska kaikki ei mahdu tälle listalle.
           </div>
           <div>
-            <Image src={logoImage} alt={title ?? "Featured product"} className="mx-auto h-56 object-contain" />
+            <Image
+              src="/logo.png"
+              alt={title ?? "Featured product"}
+              width={224}
+              height={224}
+              className="mx-auto h-56 object-contain"
+            />
           </div>
           {/*<div className="mb-2 text-xs font-semibold text-neutral-300">SUPPORT PRICE</div>
           <div className="mb-8 text-xl font-semibold">

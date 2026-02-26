@@ -2,10 +2,11 @@ import { FeaturedProduct } from "components/product/featured-product";
 import { getCollectionProducts } from "lib/shopify";
 
 import { defaultSort } from "lib/constants";
+import type { Metadata } from "next";
 
 const PRODUCT_COLLECTION = "featured";
 
-export const metadata = {
+export const metadata: Metadata = {
   description:
     "BLKLST Records is an independent underground record label from Helsinki, Finland. Dark techno and experimental electronic music. Artists, releases and events.",
   openGraph: {
