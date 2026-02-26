@@ -100,7 +100,7 @@ export default function FeaturedProductClient({
             {supportPrice ? `${Number(supportPrice.amount).toFixed(2).replace(".", ",")} €` : ""}
           </div>*/}
 
-          <div className="mb-1 text-xs uppercase tracking-wide font-semibold text-neutral-300">Select a size</div>
+          <div className="mb-1 text-xs uppercase tracking-wide font-semibold text-neutral-300">Valitse koko</div>
 
           <div className="mb-8 flex flex-wrap justify-center gap-4">
             {variants.map((v) => (
